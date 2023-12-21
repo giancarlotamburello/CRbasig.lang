@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    <property name="mimetypes">text/x-R</property>
+    <property name="line-comment-start">'</property>
+
+
+    <context id="crbasic">
+      <include>
+        <context ref="def:shell-like-comment"/>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
+-->
+<!-- Translators: It is the section for a set of languages related for this purpose -->
+<language id="crbasic" name="CRbasic" version="2.0" _section="Scientific">
+  <metadata>
+    <property name="globs">*.CR6;*.CR300</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"             name="Comment"               map-to="def:comment"/>
+    <style id="keyword"             name="Keyword"               map-to="def:keyword"/>
+    <style id="reserved-classes"    name="Reserved Class"        map-to="def:type"/>
+    <style id="assignment-operator" name="Assignment Operator"   map-to="def:operator"/>
+    <style id="delimiter"           name="Delimiter"             map-to="def:operator"/>
+    <style id="special-constant"    name="Special Constant"      map-to="def:special-constant"/>
+    <style id="boolean"             name="Boolean value"         map-to="def:boolean"/>
+    <style id="integer-number"      name="Integer Number"        map-to="def:base-n-integer"/>
+    <style id="floating-point"      name="Floating point number" map-to="def:floating-point"/>
+    <style id="functions"           name="Functions"             map-to="def:function"/>
+  </styles>
+
+  <definitions>
+
+    <context id="comment" style-ref="comment">
+      <start>\'</start>
+      <end>$</end>
+    </context>
+
+
+    <context id="keywords-ProgramStructure-Operators" style-ref="keyword">
+      <keyword>PipelineMode</keyword>
+      <keyword>SequentialMode</keyword>
+      <keyword>Alias</keyword>
+      <keyword>ArrayIndex</keyword>
+      <keyword>Begin</keyword>
+      <keyword>BeginProg</keyword>
+      <keyword>Call</keyword>
+      <keyword>CallTable</keyword>
+      <keyword>Case</keyword>
+      <keyword>Case</keyword>
+      <keyword>CaseElse</keyword>
+      <keyword>CaseIs</keyword>
+      <keyword>Const</keyword>
+      <keyword>ConstTable</keyword>
+      <keyword>ContinueScan</keyword>
+      <keyword>DataTable</keyword>
+      <keyword>Delay</keyword>
+      <keyword>Dim</keyword>
+      <keyword>Do</keyword>
+      <keyword>Do</keyword>
+      <keyword>Else</keyword>
+      <keyword>Else</keyword>
+      <keyword>Else</keyword>
+      <keyword>ElseIf</keyword>
+      <keyword>ElseIf</keyword>
+      <keyword>EndConst</keyword>
+      <keyword>EndConstTable</keyword>  
+      <keyword>EndFunction</keyword>
+      <keyword>EndIf</keyword>
+      <keyword>EndProg</keyword>
+      <keyword>EndSequence</keyword>
+      <keyword>EndSub</keyword>
+      <keyword>EndTable</keyword>
+      <keyword>ESSInitialize</keyword>
+      <keyword>ESSVariables</keyword>
+      <keyword>Exit</keyword>
+      <keyword>Exit</keyword>
+      <keyword>ExitDo</keyword>
+      <keyword>ExitFor</keyword>
+      <keyword>ExitFunction</keyword>
+      <keyword>ExitScan</keyword>
+      <keyword>ExitSub</keyword>
+      <keyword>FileManage</keyword>
+      <keyword>For</keyword>
+      <keyword>Function</keyword>
+      <keyword>If</keyword>
+      <keyword>If</keyword>
+      <keyword>IfDef</keyword>
+      <keyword>IfTime</keyword>
+      <keyword>IIF</keyword>
+      <keyword>Include</keyword>
+      <keyword>LoggerType</keyword>
+      <keyword>Loop</keyword>
+      <keyword>Loop</keyword>
+      <keyword>NewFieldNames</keyword>
+      <keyword>Next</keyword>
+      <keyword>NextScan</keyword>
+      <keyword>NextSubScan</keyword>
+      <keyword>Optional</keyword>
+      <keyword>Public</keyword>
+      <keyword>ReadOnly</keyword>
+      <keyword>Return</keyword>
+      <keyword>Scan</keyword>
+      <keyword>Select</keyword>
+      <keyword>SemaphoreGet</keyword>
+      <keyword>SemaphoreRelease</keyword>
+      <keyword>SlowSequence</keyword>
+      <keyword>SlowSequence</keyword>
+      <keyword>Step</keyword>
+      <keyword>Sub</keyword>
+      <keyword>SubScan</keyword>
+      <keyword>Table</keyword>
+      <keyword>Then</keyword>
+      <keyword>TriggerSequence</keyword>
+      <keyword>TriggerSequence</keyword>
+      <keyword>Units</keyword>
+      <keyword>Until</keyword>
+      <keyword>WaitDigTrig</keyword>
+      <keyword>WaitTriggerSequence</keyword>
+      <keyword>Wend</keyword>
+      <keyword>While</keyword>
+      <keyword>AND</keyword>
+      <keyword>IMP</keyword>
+      <keyword>INTDV</keyword>
+      <keyword>MOD</keyword>
+      <keyword>NOT</keyword>
+      <keyword>OR</keyword>
+      <keyword>XOR</keyword>
+    </context>
+
+    <context id="reserved-classes" style-ref="reserved-classes">
+      <keyword>array</keyword>
+      <keyword>character</keyword>
+      <keyword>complex</keyword>
+      <keyword>data.frame</keyword>
+      <keyword>double</keyword>
+      <keyword>factor</keyword>
+      <keyword>function</keyword>
+      <keyword>integer</keyword>
+      <keyword>list</keyword>
+      <keyword>logical</keyword>
+      <keyword>matrix</keyword>
+      <keyword>numeric</keyword>
+      <keyword>vector</keyword>
+    </context>
+
+    <context id="assignment-operator" style-ref="assignment-operator">
+      <match>(&lt;){1,2}-</match>
+    </context>
+
+    <context id="delimiters" style-ref="delimiter">
+      <match>[\)\(]+|[\{\}]+|[][]+</match>
+    </context>
+
+    <context id="special-constants" style-ref="special-constant">
+      <keyword>Inf</keyword>
+      <keyword>NA(_(integer|real|complex|character)_)?</keyword>
+      <keyword>NaN</keyword>
+      <keyword>NAN</keyword>
+      <keyword>NULL</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <keyword>True</keyword>
+      <keyword>False</keyword>
+    </context>
+
+    <context id="integer-number" style-ref="integer-number">
+      <match extended="true">
+        (?&lt;![\w\.])
+        ([1-9][0-9]*|0)[i]?
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="floating-point" style-ref="floating-point">
+      <match extended="true">
+        (?&lt;![\w\.])
+        ([0-9]+[Ee][-+]?[0-9]+|
+         ([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-+]?[0-9]+)?)
+        [i]?
+        (?![\w\.])
+      </match>
+    </context>
+
+    <define-regex id="function-prefix" extended="true">
+      (?&lt;!\$)  # not preceded by a $ which suggest a dataframe field
+      \%[         # default gtksourceview prefix
+    </define-regex>
+
+    <define-regex id="function-suffix" extended="true">
+      \%[         # default gtksourceview suffix
+      (?=\s*\()   # followed by open brackets and maybe some whitespace
+    </define-regex>
+
+ <context id="functions-CDM-Instructions" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>CDM_ACPower</keyword>
+      <keyword>CDM_Battery</keyword>
+      <keyword>CDM_BrFull</keyword>
+      <keyword>CDM_BrFull6W</keyword>
+      <keyword>CDM_BrHalf</keyword>
+      <keyword>CDM_BrHalf3W</keyword>
+      <keyword>CDM_BrHalf4W</keyword>
+      <keyword>CDM_Delay</keyword>
+      <keyword>CDM_ExciteI</keyword>
+      <keyword>CDM_ExciteV</keyword>
+      <keyword>CDM_MuxSelect</keyword>
+      <keyword>CDM_PanelTemp</keyword>
+      <keyword>CDM_PeriodAvg</keyword>
+      <keyword>CDM_PulsePort</keyword>
+      <keyword>CDM_Resistance</keyword>
+      <keyword>CDM_Resistance3W</keyword>
+      <keyword>CDM_SW12</keyword>
+      <keyword>CDM_SW5</keyword>
+      <keyword>CDM_TCComp</keyword>
+      <keyword>CDM_TCDiff</keyword>
+      <keyword>CDM_TCSE</keyword>
+      <keyword>CDM_Therm107</keyword>
+      <keyword>CDM_VoltDiff</keyword>
+      <keyword>CDM_VoltSE</keyword>
+      <keyword>CDM_VW300Config</keyword>
+      <keyword>CDM_VW300Dynamic</keyword>
+      <keyword>CDM_VW300RainFlow</keyword>
+      <keyword>CDM_VW300Static</keyword>
+      <keyword>VWIRE</keyword>
+    </context>
+
+ <context id="functions-CustomMenus" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>DisplayLine</keyword>
+      <keyword>DisplayMenu</keyword>
+      <keyword>DisplayValue</keyword>
+      <keyword>EndMenu</keyword>
+      <keyword>EndSubMenu</keyword>
+      <keyword>MenuItem</keyword>
+      <keyword>MenuPick</keyword>
+      <keyword>MenuRecompile</keyword>
+      <keyword>SubMenu</keyword>
+    </context>
+
+ <context id="functions-DataTables-OutputProcessing" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>Average</keyword>
+      <keyword>CardFlush</keyword>
+      <keyword>CardOut</keyword>
+      <keyword>DataEvent</keyword>
+      <keyword>DataInterval</keyword>
+      <keyword>DataTime</keyword>
+      <keyword>ETsz</keyword>
+      <keyword>FieldNames</keyword>
+      <keyword>FileMark</keyword>
+      <keyword>FillStop</keyword>
+      <keyword>GOESField</keyword>
+      <keyword>GOESTable</keyword>
+      <keyword>Histogram</keyword>
+      <keyword>Histogram4D</keyword>
+      <keyword>LevelCrossing</keyword>
+      <keyword>Maximum</keyword>
+      <keyword>Median</keyword>
+      <keyword>Minimum</keyword>
+      <keyword>MinRun</keyword>
+      <keyword>Moment</keyword>
+      <keyword>OpenInterval</keyword>
+      <keyword>RainFlowSample</keyword>
+      <keyword>Sample</keyword>
+      <keyword>SampleFieldCal</keyword>
+      <keyword>SampleMaxMin</keyword>
+      <keyword>StdDev</keyword>
+      <keyword>TableFile</keyword>
+      <keyword>TableHide</keyword>
+      <keyword>Totalize</keyword>
+      <keyword>WindVector</keyword>
+      <keyword>WorstCase</keyword>
+    </context>
+
+
+ <context id="functions-Datalogger-StatusControl" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>ApplyandRestartSequence</keyword>
+      <keyword>ArrayLength</keyword>
+      <keyword>CalFile</keyword>
+      <keyword>Calibrate</keyword>
+      <keyword>CheckPort</keyword>
+      <keyword>ClockChange</keyword>
+      <keyword>ClockSet</keyword>
+      <keyword>ComPortIsActive</keyword>
+      <keyword>Data</keyword>
+      <keyword>DaylightSaving</keyword>
+      <keyword>Debug</keyword>
+      <keyword>Encryption</keyword>
+      <keyword>Erase</keyword>
+      <keyword>EthernetPower</keyword>
+      <keyword>FieldCal</keyword>
+      <keyword>FieldCalStrain</keyword>
+      <keyword>GetRecord</keyword>
+      <keyword>GPS</keyword>
+      <keyword>IfTime</keyword>
+      <keyword>InstructionTimes</keyword>
+      <keyword>LineNum</keyword>
+      <keyword>LoadFieldCal</keyword>
+      <keyword>MonitorComms</keyword>
+      <keyword>Move</keyword>
+      <keyword>MuxSelect</keyword>
+      <keyword>NewFieldCal</keyword>
+      <keyword>NewFile</keyword>
+      <keyword>PortBridge</keyword>
+      <keyword>PortGet</keyword>
+      <keyword>PortPairConfig</keyword>
+      <keyword>PortsConfig</keyword>
+      <keyword>PortSet</keyword>
+      <keyword>PreserveVariables</keyword>
+      <keyword>PulsePort</keyword>
+      <keyword>PWM</keyword>
+      <keyword>Read</keyword>
+      <keyword>ReadIO</keyword>
+      <keyword>RealTime</keyword>
+      <keyword>ResetTable</keyword>
+      <keyword>Restart</keyword>
+      <keyword>Restore</keyword>
+      <keyword>SDI12SensorSetup</keyword>
+      <keyword>SDI12SensorResponse</keyword>
+      <keyword>SecsSince1990</keyword>
+      <keyword>SequentialMode</keyword>
+      <keyword>SetSecurity</keyword>
+      <keyword>SetStatus</keyword>
+      <keyword>ShutDownBegin</keyword>
+      <keyword>ShutDownEnd</keyword>
+      <keyword>Signature</keyword>
+      <keyword>StationName</keyword>
+      <keyword>SW12</keyword>
+      <keyword>TimedControl</keyword>
+      <keyword>TimeIntoInterval</keyword>
+      <keyword>TimeIsBetween</keyword>
+      <keyword>Timer</keyword>
+      <keyword>WatchDogTimer</keyword>
+      <keyword>WriteIO</keyword>
+    </context>
+
+ <context id="functions-FileInputOutput" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>FileClose</keyword>
+      <keyword>FileCopy</keyword>
+      <keyword>FileEncrypt</keyword>
+      <keyword>FileList</keyword>
+      <keyword>FileManage</keyword>
+      <keyword>FileOpen</keyword>
+      <keyword>FileRead</keyword>
+      <keyword>FileReadLine</keyword>
+      <keyword>FileRename</keyword>
+      <keyword>FileSize</keyword>
+      <keyword>FileTime</keyword>
+      <keyword>FileWrite</keyword>
+      <keyword>GetFile</keyword>
+      <keyword>Gzip</keyword>
+      <keyword>NewFile</keyword>
+      <keyword>SendFile</keyword>
+      <keyword>TableFile</keyword>
+    </context>
+
+
+ <context id="functions-InternetProtocols" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>DHCPRenew</keyword>
+      <keyword>EmailRecv</keyword>
+      <keyword>EmailRelay</keyword>
+      <keyword>EmailSend</keyword>
+      <keyword>EthernetPower</keyword>
+      <keyword>FTPClient</keyword>
+      <keyword>HTTPGet</keyword>
+      <keyword>HTTPOut</keyword>
+      <keyword>HTTPPost</keyword>
+      <keyword>HTTPPut</keyword>
+      <keyword>IPInfo</keyword>
+      <keyword>IPNetPower</keyword>
+      <keyword>IPRoute</keyword>
+      <keyword>IPTrace</keyword>
+      <keyword>NetworkTimeProtocol</keyword>
+      <keyword>PingIP</keyword>
+      <keyword>PPPClose</keyword>
+      <keyword>PPPOpen</keyword>
+      <keyword>SMSRecv</keyword>
+      <keyword>SMSSend</keyword>
+      <keyword>SNMPVariable</keyword>
+      <keyword>TCPActiveConnections</keyword>
+      <keyword>TCPClose</keyword>
+      <keyword>TCPOpen</keyword>
+      <keyword>UDPDataGram</keyword>
+      <keyword>UDPOpen</keyword>
+      <keyword>WebPageBegin</keyword>
+      <keyword>WebPageEnd</keyword>
+      <keyword>XMLParse</keyword>
+    </context>
+
+ <context id="functions-MathFunctions" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>ABS</keyword>
+      <keyword>ACOS</keyword>
+      <keyword>AddPrecise</keyword>
+      <keyword>AngleDegrees</keyword>
+      <keyword>ASCII</keyword>
+      <keyword>ASIN</keyword>
+      <keyword>ATN</keyword>
+      <keyword>ATN2</keyword>
+      <keyword>AvgRun</keyword>
+      <keyword>AvgSpa</keyword>
+      <keyword>Ceiling</keyword>
+      <keyword>CheckSum</keyword>
+      <keyword>COS</keyword>
+      <keyword>COSH</keyword>
+      <keyword>Covariance</keyword>
+      <keyword>CovSpa</keyword>
+      <keyword>CType</keyword>
+      <keyword>DewPoint</keyword>
+      <keyword>EXP</keyword>
+      <keyword>FFT</keyword>
+      <keyword>FFTSpa</keyword>
+      <keyword>FindSpa</keyword>
+      <keyword>Floor</keyword>
+      <keyword>FRAC</keyword>
+      <keyword>Hex</keyword>
+      <keyword>HexToDec</keyword>
+      <keyword>INT</keyword>
+      <keyword>LOG</keyword>
+      <keyword>LOG10</keyword>
+      <keyword>Matrix</keyword>
+      <keyword>MaxRun</keyword>
+      <keyword>MaxSpa</keyword>
+      <keyword>MinRun</keyword>
+      <keyword>MinSpa</keyword>
+      <keyword>MoveBytes</keyword>
+      <keyword>MovePrecise</keyword>
+      <keyword>PeakValley</keyword>
+      <keyword>PRT</keyword>
+      <keyword>PRTCalc</keyword>
+      <keyword>PWR</keyword>
+      <keyword>Quadrature</keyword>
+      <keyword>RainFlow</keyword>
+      <keyword>Randomize</keyword>
+      <keyword>RectPolar</keyword>
+      <keyword>RMSSpa</keyword>
+      <keyword>RND</keyword>
+      <keyword>Round</keyword>
+      <keyword>SatVP</keyword>
+      <keyword>SGN</keyword>
+      <keyword>SIN</keyword>
+      <keyword>SINH</keyword>
+      <keyword>SolarPosition</keyword>
+      <keyword>SortSpa</keyword>
+      <keyword>SQR</keyword>
+      <keyword>StdDevSpa</keyword>
+      <keyword>StrainCalc</keyword>
+      <keyword>TAN</keyword>
+      <keyword>TANH</keyword>
+      <keyword>TotalRun</keyword>
+      <keyword>VaporPressure</keyword>
+      <keyword>WetDryBulb</keyword>
+    </context>
+
+ <context id="functions-Measurements" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>ACPower</keyword>
+      <keyword>AM25T</keyword>
+      <keyword>AVW200</keyword>
+      <keyword>Battery</keyword>
+      <keyword>BrFull</keyword>
+      <keyword>BrFull6W</keyword>
+      <keyword>BrHalf</keyword>
+      <keyword>BrHalf3W</keyword>
+      <keyword>BrHalf4W</keyword>
+      <keyword>CS616</keyword>
+      <keyword>CS7500</keyword>
+      <keyword>CSAT3</keyword>
+      <keyword>CSAT3B</keyword>
+      <keyword>CSAT3BMonitor</keyword>
+      <keyword>CurrentSE</keyword>
+      <keyword>CWB100</keyword>
+      <keyword>CWB100Diagnostics</keyword>
+      <keyword>CWB100Routes</keyword>
+      <keyword>CWB100RSSI</keyword>
+      <keyword>EC100</keyword>
+      <keyword>EC100Configure</keyword>
+      <keyword>ExciteI</keyword>
+      <keyword>ExciteV</keyword>
+      <keyword>HydraProbe</keyword>
+      <keyword>LI7200</keyword>
+      <keyword>LI7700</keyword>
+      <keyword>PanelTemp</keyword>
+      <keyword>PeriodAvg</keyword>
+      <keyword>PulseCount</keyword>
+      <keyword>PulseCountReset</keyword>
+      <keyword>Quadrature</keyword>
+      <keyword>Resistance</keyword>
+      <keyword>Resistance3W</keyword>
+      <keyword>SDI12Recorder</keyword>
+      <keyword>TCDiff</keyword>
+      <keyword>TCPsyc</keyword>
+      <keyword>TCSE</keyword>
+      <keyword>TDR100</keyword>
+      <keyword>TDR200</keyword>
+      <keyword>TGA</keyword>
+      <keyword>Therm107</keyword>
+      <keyword>Thermistor</keyword>
+      <keyword>TimerInput</keyword>
+      <keyword>VibratingWire</keyword>
+      <keyword>VoltDiff</keyword>
+      <keyword>VoltSE</keyword>
+      <keyword>VoltSe</keyword>
+    </context>
+
+
+ <context id="functions-PakBus" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>AcceptDataRecords</keyword>
+      <keyword>Broadcast</keyword>
+      <keyword>ClockReport</keyword>
+      <keyword>DataGram</keyword>
+      <keyword>EncryptExempt</keyword>
+      <keyword>GetDataRecord</keyword>
+      <keyword>GetFile</keyword>
+      <keyword>GetVariables</keyword>
+      <keyword>Network</keyword>
+      <keyword>PakBusClock</keyword>
+      <keyword>Route</keyword>
+      <keyword>RoutersNeighbors</keyword>
+      <keyword>Routes</keyword>
+      <keyword>SendData</keyword>
+      <keyword>SendFile</keyword>
+      <keyword>SendGetVariables</keyword>
+      <keyword>SendTableDef</keyword>
+      <keyword>SendVariables</keyword>
+      <keyword>StaticRoute</keyword>
+      <keyword>TimeUntilTransmit</keyword>
+    </context>
+
+ <context id="functions-SDM" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>SDMAO4</keyword>
+      <keyword>SDMAO4A</keyword>
+      <keyword>SDMBeginPort</keyword>
+      <keyword>SDMCan</keyword>
+      <keyword>SDMCD16AC</keyword>
+      <keyword>SDMCD16Mask</keyword>
+      <keyword>SDMCVO4</keyword>
+      <keyword>SDMGeneric</keyword>
+      <keyword>SDMINT8</keyword>
+      <keyword>SDMIO16</keyword>
+      <keyword>SDMSIO4</keyword>
+      <keyword>SDMSpeed</keyword>
+      <keyword>SDMSW8A</keyword>
+      <keyword>SDMTrigger</keyword>
+      <keyword>SDMX50</keyword>
+    </context>
+
+
+ <context id="functions-SpecialCommunicationProtocols" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>ArgosData</keyword>
+      <keyword>ArgosDataRepeat</keyword>
+      <keyword>ArgosError</keyword>
+      <keyword>ArgosSetup</keyword>
+      <keyword>ArgosTransmit</keyword>
+      <keyword>ComPortIsActive</keyword>
+      <keyword>DialModem</keyword>
+      <keyword>DialSequence</keyword>
+      <keyword>DialVoice</keyword>
+      <keyword>DNP</keyword>
+      <keyword>DNPUpdate</keyword>
+      <keyword>DNPVariable</keyword>
+      <keyword>EndDialSequence</keyword>
+      <keyword>EndVoice</keyword>
+      <keyword>GOESData</keyword>
+      <keyword>GOESField</keyword>
+      <keyword>GOESGPS</keyword>
+      <keyword>GOESSetup</keyword>
+      <keyword>GOESStatus</keyword>
+      <keyword>GPS</keyword>
+      <keyword>I2COpen</keyword>
+      <keyword>I2CRead</keyword>
+      <keyword>I2CWrite</keyword>
+      <keyword>ModbusMaster</keyword>
+      <keyword>ModbusSlave</keyword>
+      <keyword>ModemCallBack</keyword>
+      <keyword>ModemHangup</keyword>
+      <keyword>SPIOpen</keyword>
+      <keyword>SPIRead</keyword>
+      <keyword>SPIWrite</keyword>
+      <keyword>VoiceBeg</keyword>
+      <keyword>VoiceHangup</keyword>
+      <keyword>VoiceKey</keyword>
+      <keyword>VoiceNumber</keyword>
+      <keyword>VoicePhrases</keyword>
+      <keyword>VoiceSetup</keyword>
+      <keyword>VoiceSpeak</keyword>
+    </context>
+
+ <context id="functions-SerialInputOutput" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>CheckSum</keyword>
+      <keyword>ComPortIsActive</keyword>
+      <keyword>MoveBytes</keyword>
+      <keyword>SerialBrk</keyword>
+      <keyword>SerialClose</keyword>
+      <keyword>SerialFlush</keyword>
+      <keyword>SerialIn</keyword>
+      <keyword>SerialInBlock</keyword>
+      <keyword>SerialInChk</keyword>
+      <keyword>SerialInRecord</keyword>
+      <keyword>SerialOpen</keyword>
+      <keyword>SerialOut</keyword>
+      <keyword>SerialOutBlock</keyword>
+    </context>
+
+
+ <context id="functions-StringManipulation" style-ref="functions">
+      <prefix>\%{function-prefix}</prefix>
+      <suffix>\%{function-suffix}</suffix>
+      <keyword>ASCII</keyword>
+      <keyword>CHR</keyword>
+      <keyword>Concatenation</keyword>
+      <keyword>FormatFloat</keyword>
+      <keyword>FormatLong</keyword>
+      <keyword>FormatLongLong</keyword>
+      <keyword>Hex</keyword>
+      <keyword>HexToDec</keyword>
+      <keyword>InStr</keyword>
+      <keyword>Left</keyword>
+      <keyword>Len</keyword>
+      <keyword>LowerCase</keyword>
+      <keyword>LTrim</keyword>
+      <keyword>Mid</keyword>
+      <keyword>Replace</keyword>
+      <keyword>Right</keyword>
+      <keyword>RTrim</keyword>
+      <keyword>SplitStr</keyword>
+      <keyword>Sprintf</keyword>
+      <keyword>StrComp</keyword>
+      <keyword>Trim</keyword>
+      <keyword>TypeOf</keyword>
+      <keyword>UpperCase</keyword>
+    </context>
+
+
+    <context id="crbasic">
+      <include>
+        <context ref="def:string"/>
+        <context ref="comment"/>
+        <context ref="keywords-ProgramStructure-Operators"/>
+        <context ref="assignment-operator"/>
+        <context ref="delimiters"/>
+        <context ref="special-constants"/>
+        <context ref="boolean"/>
+        <context ref="integer-number"/>
+        <context ref="floating-point"/>
+        <context ref="functions-CDM-Instructions"/>
+        <context ref="functions-CustomMenus"/>
+        <context ref="functions-DataTables-OutputProcessing"/>
+        <context ref="functions-Datalogger-StatusControl"/>
+        <context ref="functions-FileInputOutput"/>
+        <context ref="functions-InternetProtocols"/>
+        <context ref="functions-MathFunctions"/>
+        <context ref="functions-Measurements"/>
+        <context ref="functions-PakBus"/>
+        <context ref="functions-SDM"/>
+        <context ref="functions-SpecialCommunicationProtocols"/>
+        <context ref="functions-SerialInputOutput"/>
+        <context ref="functions-StringManipulation"/>
+
+      </include>
+    </context>
+  </definitions>
+</language>
