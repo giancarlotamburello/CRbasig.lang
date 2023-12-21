@@ -14,7 +14,7 @@
 <!-- Translators: It is the section for a set of languages related for this purpose -->
 <language id="crbasic" name="CRbasic" version="2.0" _section="Scientific">
   <metadata>
-    <property name="globs">*.CR6;*.CR300</property>
+    <property name="globs">*.CR6;*.CR300;*.CR800;*.CR1000;*.CR3000;*.CR5000;*.CR9000;*.DLD;*.CRB</property>
   </metadata>
 
   <styles>
